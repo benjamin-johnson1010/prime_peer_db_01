@@ -21,24 +21,23 @@ app.listen(port, function(){
   console.log('listening on', port);
 
 });
-// app.get('/testUser', function(req, res){
-//   var justin = new User({
-//   assignment_number: 8,
-//   student_name: 'Justin',
-//   score: 80,
-// });
-// console.log(justin);
-//
-// //res.send()
-// });
-app.get('/all', function(req, res){
-User.find({}, function(err, userResults){
-  if(err){
-    console.log('error occurred', err);
-    res.sendStatus(500);
-  }
-  else{
-res.send(userResults);
-}
+app.get('/testUser', function(req, res){
+  var justin = new User({
+  assignment_number: 8,
+  student_name: 'Justin',
+  score: 80,
 });
+console.log(justin);
+res.send();
 });
+// app.get('/all', function(req, res){
+// User.find({}, function(err, userResults){
+//   if(err){
+//     console.log('error occurred', err);
+//     res.sendStatus(500);
+//   }
+//   else{
+// res.send(userResults);
+// }
+// });
+// });
