@@ -24,6 +24,7 @@ router.get('/',function(req, res){
 router.post('/',function(req, res){
   console.log('request body:', req.body);
   var sentData = req.body;
+  console.log('sentData', sentData);
   var newUser = new User({
     assignment_number:  sentData.assignment_number,
     student_name: sentData.student_name,
@@ -37,8 +38,8 @@ newUser.save(function(err){
   res.sendStatus(500);
 }
 else{
-  console.log('success');
-  res.sendStatus(201);
+  console.log('success', newUser);
+  res.send(newUser);
 }
 });
 

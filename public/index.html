@@ -2,13 +2,28 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>JEN Stack template</title>
-    <script src="vendors/jquery-3.1.0.min.js" charset="utf-8"></script>
+    <title>Kid's Late Assignments</title>
+    <script src="vendors/angular.min.js" charset="utf-8"></script>
     <script src="scripts/scripts.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="vendors/bootstrap.min.css" media="screen" title="no title">
+
   </head>
-  <body>
-    <h1>JEN Stack template</h1>
-    <button id='sender'>Shake hands</button>
+  <body ng-app="myApp">
+    <h1>GNARLY KID'S LATE ASSIGNMENTS</h1>
+    <div ng-controller="assignmentsController">
+
+      <h4>Enter the brat's assignments</h4>
+
+      <input type="number" ng-model="assignNumber" placeholder="Assignment Number"></input>
+      <input type="text" ng-model="name" placeholder="Brat's Name"></input>
+      <input type="number" ng-model="score" placeholder="Score"></input>
+      <input type="date" ng-model="date" placeholder="Late Date"></input>
+    <button ng-click="newAssignment()" placeholder="Submit Brat's Info">Submit</button>
+
+
+    <h1>Name: {{displayName}} Score: {{displayScore}} Date: {{displayDate}}</h1>
+
+
+
+  </div>
   </body>
 </html>

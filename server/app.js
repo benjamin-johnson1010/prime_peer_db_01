@@ -1,8 +1,8 @@
 var express = require( 'express' );
 var app = express();
-// var path = require( 'path' );
+var path = require( 'path' );
 var bodyParser = require( 'body-parser' );
-// var urlencodedParser = bodyParser.urlencoded( { extended: false } );
+var urlencodedParser = bodyParser.urlencoded( { extended: true } );
 var port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
@@ -36,3 +36,10 @@ mongoose.connect("mongodb://localhost:27017/assignments");
 app.listen(port, function(){
   console.log('listening on', port);
 });
+
+app.get( '/', function( req, res ){
+  console.log( 'base URL hit' );
+  res.sendFile( path.resolve('public/index.html') );
+});
+
+app.use( express.static( 'public' ) );

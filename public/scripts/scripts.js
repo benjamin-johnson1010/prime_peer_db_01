@@ -1,20 +1,38 @@
-console.log( 'js' );
-$( document ).ready( function(){
-  console.log( 'JQ');
-  $( '#sender' ).on( 'click', function(){
-    console.log( 'in sender on click' );
-    // assemble object to send
-    var objectToSend={
-      request: 'from client'
-    };
-    // ajax call to post route
-    $.ajax({
-      type: 'POST',
-      url: '/poster',
-      data: objectToSend,
-      success: function( data ){
-        console.log( 'get this back from server:', data );
-      } // end success
-    }); // end ajax
-  }); // end sender on click
-}); // end doc ready
+console.log( 'js is sourced' );
+
+var myApp = angular.module( 'myApp', []);
+
+var allAssignments = [];
+
+
+myApp.controller('assignmentsController', ['$scope', '$http', function($scope, $http){
+  console.log('NG');
+  $scope.newAssignment = function(){
+    console.log('in newAssignment');
+    var newInput={
+      assignment_number:  $scope.assignNumber,
+      student_name: $scope.name,
+      score:   $scope.score,
+      date_completed: $scope.date
+};
+    this.product = newInput;
+
+    $scope.assignNumber = null;
+    $scope.name = null;
+    $scope.score = null;
+    $scope.date = null;
+    $http({
+      method: 'POST',
+      url: '/assignments',
+      data: newInput
+    }).then(function(response){
+      console.log('this is from the server', response);
+
+      $scope.displayName = response.data.student_name;
+      $scope.displayScore = response.data.score;
+      $scope.displayAssignmentNumber = response.data.assignment_number;
+      $scope.displayDate = response.data.date_completed.substring(0,10);
+
+    });
+  };
+}]);

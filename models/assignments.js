@@ -8,5 +8,5 @@ var userSchema = new Schema({
   date_completed: { type: Date, default: Date.now },
   hidden: Boolean
 });
-var User = mongoose.model('users', userSchema);
+var User = mongoose.model('assignment', userSchema);
 module.exports = User;
