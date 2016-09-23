@@ -22,8 +22,26 @@ router.get('/',function(req, res){
 
 
 router.post('/',function(req, res){
-  console.log(' in router.post');
   console.log('request body:', req.body);
+  var sentData = req.body;
+  var newUser = new User({
+    assignment_number:  sentData.assignment_number,
+    student_name: sentData.student_name,
+    score:   sentData.score,
+    date_completed: sentData.date_completed,
+    hidden: sentData.hidden
+  });
+newUser.save(function(err){
+  if(err){
+  console.log('error occurred:', err);
+  res.sendStatus(500);
+}
+else{
+  console.log('success');
+  res.sendStatus(201);
+}
+});
+
 });
 
 module.exports = router;
